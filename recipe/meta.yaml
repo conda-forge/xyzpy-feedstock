@@ -19,12 +19,12 @@ build:
 
 requirements:
   host:
-    - python >= {{ python_min }}
+    - python {{ python_min }}
     - hatchling
     - hatch-vcs
     - pip
   run:
-    - python >= {{ python_min }}
+    - python >={{ python_min }}
     - dask-core
     - h5netcdf
     - h5py
@@ -42,7 +42,7 @@ test:
     - xyzpy-grow --help
   requires:
     - pip
-    - python >= {{ python_min }}
+    - python {{ python_min }}
 
 about:
   home: https://pypi.org/project/xyzpy/
