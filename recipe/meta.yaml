@@ -29,6 +29,7 @@ requirements:
     - h5netcdf
     - h5py
     - joblib
+    - matplotlib-base
     - numpy
     - pandas
     - tqdm
