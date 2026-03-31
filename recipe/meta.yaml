@@ -1,11 +1,13 @@
+{% set name = "xyzpy" %}
 {% set version = "1.3.0" %}
+{% set python_min = "3.10" %}
 
 package:
-  name: xyzpy
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/x/xyzpy/xyzpy-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xyzpy-{{ version }}.tar.gz
   sha256: 397892b6d6d457aa8c57cfbb610bf03435b049bba5a9c079ee9a63039074844b
 
 build:
@@ -17,12 +19,12 @@ build:
 
 requirements:
   host:
-    - python >=3.10
+    - python >= {{ python_min }}
     - hatchling
     - hatch-vcs
     - pip
   run:
-    - python >=3.10
+    - python >= {{ python_min }}
     - dask-core
     - h5netcdf
     - h5py
@@ -40,7 +42,7 @@ test:
     - xyzpy-grow --help
   requires:
     - pip
-    - python
+    - python >= {{ python_min }}
 
 about:
   home: https://pypi.org/project/xyzpy/
