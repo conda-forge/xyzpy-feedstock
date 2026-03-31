@@ -1,48 +1,54 @@
 {% set name = "xyzpy" %}
-{% set version = "1.2.1" %}
-
+{% set version = "1.3.0" %}
+{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/xyzpy-{{ version }}.tar.gz
-  sha256: baff50753fdcbd2112b901b544c14b9405f285bf5e1b117744f2db2bad10711b
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xyzpy-{{ version }}.tar.gz
+  sha256: 397892b6d6d457aa8c57cfbb610bf03435b049bba5a9c079ee9a63039074844b
 
 build:
-  number: 0
+  entry_points:
+    - xyzpy-grow = xyzpy.gen.xyzpy_grow_cli:main
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
+    - python {{ python_min }}
+    - hatchling
+    - hatch-vcs
     - pip
-    - python >=3.5
   run:
-    - dask-core >=0.11.1
-    - h5netcdf >=0.2.2
-    - h5py >=2.6.0
-    - joblib >=0.12
-    - numpy >=1.10.0
-    - pandas >=0.20
-    - python >=3.5
-    - tqdm >=4.7.6
-    - xarray >=0.9.0
-    - matplotlib-base >=2.2.0
+    - python >={{ python_min }}
+    - dask-core
+    - h5netcdf
+    - h5py
+    - joblib
+    - matplotlib-base
+    - numpy
+    - pandas
+    - tqdm
+    - xarray
 
 test:
   imports:
     - xyzpy
-    - xyzpy.gen
   commands:
     - pip check
+    - xyzpy-grow --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
-  home: http://xyzpy.readthedocs.io
+  home: https://pypi.org/project/xyzpy/
   summary: Easily generate large parameter space data
+  doc_url: https://xyzpy.readthedocs.io/
   license: MIT
   license_file: LICENSE
 
