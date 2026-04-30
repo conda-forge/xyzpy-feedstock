@@ -1,5 +1,5 @@
 {% set name = "xyzpy" %}
-{% set version = "1.3.0" %}
+{% set version = "1.3.4" %}
 {% set python_min = "3.10" %}
 
 package:
@@ -8,11 +8,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xyzpy-{{ version }}.tar.gz
-  sha256: 397892b6d6d457aa8c57cfbb610bf03435b049bba5a9c079ee9a63039074844b
+  sha256: ba325746704df4789dcdd7839fb6c95641b55daaac314273172f3be3c3799aca
 
 build:
   entry_points:
-    - xyzpy-grow = xyzpy.gen.xyzpy_grow_cli:main
+    - xyzpy-grow = xyzpy_grow:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
