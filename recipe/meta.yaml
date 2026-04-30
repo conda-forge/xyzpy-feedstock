@@ -12,7 +12,7 @@ source:
 
 build:
   entry_points:
-    - xyzpy-grow = xyzpy.gen.xyzpy_grow_cli:main
+    - xyzpy-grow = xyzpy_grow:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
