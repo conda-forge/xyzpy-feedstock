@@ -1,14 +1,14 @@
 {% set name = "xyzpy" %}
-{% set version = "1.3.4" %}
-{% set python_min = "3.10" %}
+{% set version = "1.3.5" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xyzpy-{{ version }}.tar.gz
-  sha256: ba325746704df4789dcdd7839fb6c95641b55daaac314273172f3be3c3799aca
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/xyzpy-{{ version }}.tar.gz
+  sha256: 4ba0aa08af546a8cdb66cc5bb96dea010ca0e2d36b5d8338e30d6e4f44201b89
 
 build:
   entry_points:
@@ -25,7 +25,7 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
-    - dask-core
+    - cloudpickle
     - h5netcdf
     - h5py
     - joblib
